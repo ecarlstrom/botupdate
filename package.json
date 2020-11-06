@@ -4,6 +4,8 @@
   "description": "Project initialized November 6, 2020.",
   "main": "index.js",
   "dependencies": {
+    "discord.js": "^12.4.1",
+    "dotenv": "^8.2.0",
     "http": "0.0.1-security"
   },
   "devDependencies": {},
