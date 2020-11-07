@@ -18,3 +18,20 @@ const server = require('./server.js');
                                                     */
 const weather = require('weather-js');
 // see if there's a better weather package
+
+/*
+--------------------BOT INITIALIZATION--------------------
+                                                        */
+client.on('ready', () => {
+    console.log('Bot online');
+    console.log(`${client.user.username} ready for use.`);
+});
+
+const prefix = process.env.prefix;
+const weatherPrefix = process.env.weatherPrefix;
+const forecastPrefix = process.env.musicPrefix;
+// const musicPrefix = process.env.musicPrefix; <--- add when relevant
+
+/*
+--------------------GENERAL MESSAGE RULES--------------------
+                                                           */
