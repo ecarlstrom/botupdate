@@ -45,3 +45,52 @@ client.on('message', message => {
         return;
     }
 });
+
+// message rules are stored in related blocks for clarity, rather than one large block encompassing all rules
+
+// kippy/tama rule below
+client.on('message', message => {
+    if(message.content.includes('kippy') || message.author.id === process.env.kippyID) {
+        message.react('🐳');
+        message.react('🐋');
+    }
+
+    if(message.content.includes('tama') || message.author.id === process.env.tamaID) {
+        message.react('👮');
+    }
+});
+
+//'seeusmile' rules
+client.on('message', message => {
+    if(message.content === (prefix + 'seeusmile')) {
+        const embed = new Discord.MessageEmbed()
+            .setTitle('When I see U Smile And know that is not for me, that is when i\'ll miss U the most..')
+            .setColor('0xDCDCDC')
+            .setImage('https://i.imgur.com/hUTCznj.png')
+            .setThumbnail('https://cdn.discordapp.com/emojis/519203018302947335.png')
+            .setFooter(`User with a broken heart: ${message.member.displayName}`)
+            .setTimestamp()
+        message.channel.send({embed});
+    }
+
+    if(message.content === (prefix + 'seeusmall')) {
+        const embed = new Discord.MessageEmbed()
+            .setTitle('When I see U Smile And know that is not for me, that is when i\'ll miss U the most..')
+            .setColor('0xDCDCDC')
+            .setThumbnail('https://i.imgur.com/hUTCznj.png')
+            .setFooter(`User with a broken heart: ${message.member.displayName}`)
+            .setTimestamp()
+        message.channel.send({embed});
+    }
+
+    if(message.content === (prefix + 'seeuweeb')) {
+        const embed = new Discord.MessageEmbed()
+            .setTitle('私がUスマイルを見て、それが私には向かないことを知っているとき、それは私がUを最も恋しく思うときです。。')
+            .setColor('0xDCDCDC')
+            .setImage('https://i.imgur.com/hUTCznj.png')
+            .setThumbnail('https://cdn.discordapp.com/emojis/519203018302947335.png')
+            .setFooter(`失恋した人：${message.member.displayName}`)
+            .setTimestamp()
+        message.channel.send({embed});
+    }
+});
