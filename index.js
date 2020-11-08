@@ -22,8 +22,10 @@ const weather = require('weather-js');
 /*
 --------------------BOT INITIALIZATION--------------------
                                                         */
+client.login(token);
+
 client.on('ready', () => {
-    console.log('Bot online');
+    console.log('Bot online!');
     console.log(`${client.user.username} ready for use.`);
 });
 
@@ -35,3 +37,11 @@ const forecastPrefix = process.env.musicPrefix;
 /*
 --------------------GENERAL MESSAGE RULES--------------------
                                                            */
+client.on('message', message => {
+    let input = message.content.split(' ').slice(1);
+    let args = input.join(' ');
+
+    if(!message.content.startsWith(prefix) || message.author.bot) {
+        return;
+    }
+});
