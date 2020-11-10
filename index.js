@@ -37,7 +37,10 @@ const forecastPrefix = process.env.musicPrefix;
 /*
 --------------------GENERAL MESSAGE RULES--------------------
                                                            */
+// reminder: error handling
+
 client.on('message', message => {
+    // reusable rule, see if this can be extended to larger scope
     let input = message.content.split(' ').slice(1);
     let args = input.join(' ');
 
@@ -92,5 +95,19 @@ client.on('message', message => {
             .setFooter(`失恋した人：${message.member.displayName}`)
             .setTimestamp()
         message.channel.send({embed});
+    }
+});
+
+// bot status rules
+client.on('message', message => {
+    let input = message.content.split(' ').slice(1);
+    let args = input.join(' ');
+
+    if(message.content.startsWith(prefix + 'setgame')) {
+        client.user.setActivity(args);
+    }
+
+    if(message.content.startsWith(prefix + 'setstatus')) {
+        client.user.setStatus(args);
     }
 });
