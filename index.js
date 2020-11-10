@@ -63,7 +63,7 @@ client.on('message', message => {
     }
 });
 
-//'seeusmile' rules
+// 'seeusmile' rules
 client.on('message', message => {
     if(message.content === (prefix + 'seeusmile')) {
         const embed = new Discord.MessageEmbed()
@@ -110,4 +110,9 @@ client.on('message', message => {
     if(message.content.startsWith(prefix + 'setstatus')) {
         client.user.setStatus(args);
     }
+});
+
+// basic error handler, more detail and specific handlers later
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Uncaught Promise Error: ', reason.stack || reason);
 });
