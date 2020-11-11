@@ -130,6 +130,7 @@ client.on('message', message => {
         const command = args.shift().toLowerCase();
         axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${args}&units=imperial&appid=${process.env.weatherAPIKey}`)
         .then(response => {
+            // handle response data
             let weatherData = response;
             let currentTemp = weatherData.data.main.temp;
             let maxTemp = weatherData.data.main.temp_max;
@@ -142,9 +143,20 @@ client.on('message', message => {
             let country = weatherData.data.sys.country;
             let pressure = weatherData.data.main.pressure;
             let clouds = weatherData.data.weather[0].description;
-            message.channel.send(currentTemp);
+
+            // return the formatted weather data
+            const embed = new Discord.MessageEmbed()
+                .setTitle(`Current weather conditions for ${cityName}, ${country}: *__${clouds}__* `)
+                .setDescription(`Temperature of ${currentTemp} degrees Fahrenheit, humidity ${humidity}%. `)
+                .addBlankField(true)
+                .addField(`Wind at ${wind}.`)
+                .addBlankField(true)
+                .setFooter('Want a forecast instead? Use the !forecast command!')
+                .setThumbnail(`${icon}`)
+                .setTimestamp()
+            message.channel.send({embed} || err.message);
         }).catch(err => {
-            message.reply(`Please enter a valid city name!`);
+            message.reply(err);
         })
     }
 })
