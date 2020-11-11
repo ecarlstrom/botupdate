@@ -127,7 +127,7 @@ process.on('unhandledRejection', (reason, promise) => {
 client.on('message', message => {
     if(message.content.startsWith(process.env.weatherPrefix)) {
         const args = message.content.slice(process.env.weatherPrefix.length).split(' ');
-        const command = args.shift.toLowerCase();
+        const command = args.shift().toLowerCase();
         axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${args}&appid=${process.env.weatherAPIKey}`)
         .then(response => {
             let weatherData = response;
