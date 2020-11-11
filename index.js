@@ -18,6 +18,8 @@ const server = require('./server.js');
                                                     */
 // const weather = require('weather-js');
 const weather = require('openweather-apis');
+weather.setLang('en');
+weather.setAPPID(process.env.weatherAPIKey);
 // see if there's a better weather package
 
 /*
