@@ -128,6 +128,23 @@ client.on('message', message => {
     if(message.content.startsWith(process.env.weatherPrefix)) {
         const args = message.content.slice(process.env.weatherPrefix.length).split(' ');
         const command = args.shift.toLowerCase();
-
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${args}&appid=${process.env.weatherAPIKey}`)
+        .then(response => {
+            let weatherData = response;
+            let currentTemp = weatherData.data.main.temp;
+            let maxTemp = weatherData.data.main.temp_max;
+            let minTemp = weatherData.data.main.temp_min;
+            let humidity = weatherData.data.main.humidity;
+            let windSpeed = weatherData.data.wind.speed;
+            let author = message.author.username;
+            let icon = weatherData.data.weather[0].icon;
+            let cityName = args;
+            let country = weatherData.data.sys.country;
+            let pressure = weatherData.data.main.pressure;
+            let clouds = weatherData.data.weather[0].description;
+            message.channel.send(weatherData);
+        }).catch(err => {
+            message.reply(`Please enter a valid city name!`);
+        })
     }
 })
