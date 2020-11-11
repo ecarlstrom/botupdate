@@ -36,7 +36,7 @@ client.on('ready', () => {
 
 const prefix = process.env.prefix;
 const weatherPrefix = process.env.weatherPrefix;
-const forecastPrefix = process.env.musicPrefix;
+const forecastPrefix = process.env.forecastPrefix;
 // const musicPrefix = process.env.musicPrefix; <--- add when relevant
 
 /*
@@ -131,7 +131,7 @@ client.on('message', message => {
     let contents = message.content.slice(process.env.weatherPrefix.length).split(' ');
     let args = contents.slice(1);
   
-    if(message.content.startsWith(process.env.weatherPrefix)) {
+    if(message.content.startsWith(weatherPrefix)) {
   
       weather.find({search: args.join(' '), degreeType: 'F'}, function(err, result) {
         if(err) {
@@ -187,5 +187,9 @@ client.on('message', message => {
           message.channel.send({embed} || err.message);
         }
       });
+    }
+
+    if(message.content.startsWith(forecastPrefix)) {
+        message.channel.send(`The !forecast command will be back soon once a better API is found.`)
     }
 })
