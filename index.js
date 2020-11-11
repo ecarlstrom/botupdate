@@ -18,6 +18,7 @@ const server = require('./server.js');
                                                     */
 // const weather = require('weather-js');
 const weather = require('openweather-apis');
+const axios = require('axios');
 weather.setLang('en');
 weather.setAPPID(process.env.weatherAPIKey);
 // see if there's a better weather package
@@ -124,10 +125,9 @@ process.on('unhandledRejection', (reason, promise) => {
 --------------------WEATHER FUNCTIONS--------------------
                                                        */
 client.on('message', message => {
-    let weatherMessageInput = message.content.toLowerCase();
-    let sender = message.author;
-    let contents = message.content.slice(process.env.weatherPrefix.length).split(' ');
-    let args = contents.slice(1);
+    if(message.content.startsWith(process.env.weatherPrefix)) {
+        const args = message.content.slice(process.env.weatherPrefix.length).split(' ');
+        const command = args.shift.toLowerCase();
 
-
+    }
 })
