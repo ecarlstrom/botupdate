@@ -16,7 +16,8 @@ const server = require('./server.js');
 /*
 --------------------WEATHER CONFIG--------------------
                                                     */
-const weather = require('weather-js');
+// const weather = require('weather-js');
+const weather = require('openweather-apis');
 // see if there's a better weather package
 
 /*
