@@ -123,3 +123,11 @@ process.on('unhandledRejection', (reason, promise) => {
 /*
 --------------------WEATHER FUNCTIONS--------------------
                                                        */
+client.on('message', message => {
+    let weatherMessageInput = message.content.toLowerCase();
+    let sender = message.author;
+    let contents = message.content.slice(process.env.weatherPrefix.length).split(' ');
+    let args = contents.slice(1);
+
+
+})
