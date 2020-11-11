@@ -40,6 +40,25 @@ const forecastPrefix = process.env.forecastPrefix;
 // const musicPrefix = process.env.musicPrefix; <--- add when relevant
 
 /*
+--------------------BASIC COMMAND HANDLER--------------------
+                                                           */
+client.on('message', message => {
+    let args = message.content.slice(prefix.length).trim().split(' ');
+    let cmd = args.shift().toLowerCase();
+
+    if(!message.content.startsWith(prefix)) {
+        return;
+    }
+
+    try {
+        let commandFile = require(`./commands/${cmd}.js`);
+        commandFile.run(client, message, args);
+    } catch(err) {
+        console.log(err.stack);
+    }
+});
+
+/*
 --------------------GENERAL MESSAGE RULES--------------------
                                                            */
 // reminder: error handling
