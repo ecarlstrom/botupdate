@@ -21,7 +21,14 @@ exports.run = async (client, message, args, ops) => {
     let info = ytdl.getVideoID(args[0]);
     // console.log(args[0]);
     let connection = await message.member.voice.channel.join();
-    let dispatcher = await connection.play(ytdl(args[0], { filter: 'audioonly' }));
+    let dispatcher = await connection.play(ytdl(args[0], { 
+        filter: 'audioonly',
+        quality: 'highestaudio',
+        highWaterMark: 1<<25
+     }),{
+         passes: 5,
+         volume: 0.70
+     }, {highWaterMark: 1});
 
     message.channel.send(`Now playing: ${info.title}`);
 }
