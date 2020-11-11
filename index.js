@@ -16,12 +16,13 @@ const server = require('./server.js');
 /*
 --------------------WEATHER CONFIG--------------------
                                                     */
-// const weather = require('weather-js');
-const weather = require('openweather-apis');
-const axios = require('axios');
-weather.setLang('en');
-weather.setAPPID(process.env.weatherAPIKey);
-// see if there's a better weather package
+const weather = require('weather-js');
+// keeping other dependencies for now since they might work better than weather-js for forecasts
+
+// const weather = require('openweather-apis');
+// const axios = require('axios');
+// weather.setLang('en');
+// weather.setAPPID(process.env.weatherAPIKey);
 
 /*
 --------------------BOT INITIALIZATION--------------------
@@ -125,38 +126,66 @@ process.on('unhandledRejection', (reason, promise) => {
 --------------------WEATHER FUNCTIONS--------------------
                                                        */
 client.on('message', message => {
+    let weatherMessageCaps = message.content.toUpperCase();
+    let sender = message.author;
+    let contents = message.content.slice(process.env.weatherPrefix.length).split(' ');
+    let args = contents.slice(1);
+  
     if(message.content.startsWith(process.env.weatherPrefix)) {
-        const args = message.content.slice(process.env.weatherPrefix.length).split(' ');
-        const command = args.shift().toLowerCase();
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${args}&units=imperial&appid=${process.env.weatherAPIKey}`)
-        .then(response => {
-            // handle response data
-            let weatherData = response;
-            let currentTemp = weatherData.data.main.temp;
-            let maxTemp = weatherData.data.main.temp_max;
-            let minTemp = weatherData.data.main.temp_min;
-            let humidity = weatherData.data.main.humidity;
-            let windSpeed = weatherData.data.wind.speed;
-            let author = message.author.username;
-            let icon = weatherData.data.weather[0].icon;
-            let cityName = args;
-            let country = weatherData.data.sys.country;
-            let pressure = weatherData.data.main.pressure;
-            let clouds = weatherData.data.weather[0].description;
-
-            // return the formatted weather data
-            const embed = new Discord.MessageEmbed()
-                .setTitle(`Current weather conditions for ${cityName}, ${country}: *__${clouds}__* `)
-                .setDescription(`Temperature of ${currentTemp} degrees Fahrenheit, humidity ${humidity}%. `)
-                .addField('\u200b', '\u200b')
-                .addField(`Wind at ${windSpeed}.`)
-                .addField('\u200b', '\u200b')
-                .setFooter('Want a forecast instead? Use the !forecast command!')
-                .setThumbnail(`${icon}`)
-                .setTimestamp()
-            message.channel.send({embed} || err.message);
-        }).catch(err => {
-            message.reply(err.stack);
-        })
+  
+      weather.find({search: args.join(' '), degreeType: 'F'}, function(err, result) {
+        if(err) {
+          return message.reply(`🤠 Please input a location! 🤠`);
+        }
+  
+        // weather-js should return an array of objects
+        // current{} contains current weather data, location{} is location information
+        // console.log(JSON.parse(JSON.stringify(result[0].current, null, 2)));
+        if(result === undefined || result.length === 0) {
+          message.channel.send(`🤠 Sorry, there are no results for your search term! 🤠`)
+          return;
+        } 
+       
+        let weatherOutput = result[0].current;
+        let location = result[0].location;
+        
+        if(weatherOutput) {
+          let temp = weatherOutput.temperature;
+          // console.log(temp);
+          const embed = new Discord.MessageEmbed()
+            .setTitle(`Current weather conditions for ${location.name}: *__${weatherOutput.skytext}__* `)
+            .setDescription(`Temperature of ${weatherOutput.temperature} degrees ${location.degreetype}, feels like ${weatherOutput.feelslike}. Humidity ${weatherOutput.humidity}%. `)
+            .addField('\u200b', '\u200b')
+            .addField(`Sky conditions: ${weatherOutput.skytext}`,
+              `Wind at ${weatherOutput.winddisplay}.`)
+              .addField('\u200b', '\u200b')
+            .setFooter('🤠 !forecast currently disabled while I work on getting access to weekend data. 🤠')
+            .setThumbnail(`${weatherOutput.imageUrl}`)
+            .setTimestamp()
+            
+            // changes color scheme of sidebar based on temperature
+  
+            if(temp >= 80) {
+              embed.setColor(0xFF6700)
+            } else if(temp >= 60 && temp <= 79) {
+              embed.setColor(0xADFF2F)
+            } else {
+              embed.setColor(0x00FFFF)
+            }
+  
+            // displays severe weather alerts if any, otherwise gives an all-clear
+            // see if this is working correctly, API may not be returning alert data
+            // console.log(location);
+            // console.log(location.alert);
+            if(!location.alert) {
+              embed.addField(`No weather alerts!`, `👍`)
+              .addField('\u200b', '\u200b')
+            } else {
+              embed.addField(`🚨 Local weather alert:`, `${location.alert} 🚨`)
+              .addField('\u200b', '\u200b')
+            }
+          message.channel.send({embed} || err.message);
+        }
+      });
     }
 })
