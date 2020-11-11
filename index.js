@@ -148,15 +148,15 @@ client.on('message', message => {
             const embed = new Discord.MessageEmbed()
                 .setTitle(`Current weather conditions for ${cityName}, ${country}: *__${clouds}__* `)
                 .setDescription(`Temperature of ${currentTemp} degrees Fahrenheit, humidity ${humidity}%. `)
-                .addBlankField(true)
-                .addField(`Wind at ${wind}.`)
-                .addBlankField(true)
+                .addField('\u200b', '\u200b')
+                .addField(`Wind at ${windSpeed}.`)
+                .addField('\u200b', '\u200b')
                 .setFooter('Want a forecast instead? Use the !forecast command!')
                 .setThumbnail(`${icon}`)
                 .setTimestamp()
             message.channel.send({embed} || err.message);
         }).catch(err => {
-            message.reply(err);
+            message.reply(err.stack);
         })
     }
 })
