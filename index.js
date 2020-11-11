@@ -117,3 +117,7 @@ client.on('message', message => {
 process.on('unhandledRejection', (reason, promise) => {
     console.error('Uncaught Promise Error: ', reason.stack || reason);
 });
+
+/*
+--------------------WEATHER FUNCTIONS--------------------
+                                                       */
