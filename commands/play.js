@@ -18,7 +18,15 @@ exports.run = async (client, message, args, ops) => {
         return commandFile.run(client, message, args, ops);
     }
 
-    let info = await ytdl.getInfo(args[0]);
+    let info;
+    try {
+        info = await ytdl.getInfo(args[0]);
+        console.log(info.videoDetails.title);
+        info = info.videoDetails.title;
+    } catch(err) {
+        console.log(err.stack || err);
+    }
+
     let data = ops.active.get(message.guild.id) || {};
     if(!data.connection) {
         data.connection = await message.member.voice.channel.join();
@@ -35,11 +43,11 @@ exports.run = async (client, message, args, ops) => {
         url: args[0],
         announceChannel: message.channel.id
     });
-
+    console.log("Info: ", info)
     if(!data.dispatcher) {
         play(client, ops, data);
     } else {
-        message.channel.send(`Added to queue: ${info.title} | Requested by ${data.queue[0].requester}`);
+        message.channel.send(`Added to queue: ${info} | Requested by ${data.queue[0].requester}`);
     }
 
     ops.active.set(message.guild.id, data);
