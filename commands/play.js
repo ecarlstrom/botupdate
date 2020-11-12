@@ -31,7 +31,7 @@ exports.run = async (client, message, args, ops) => {
 
     data.queue.push({
         songTitle: info.title,
-        requester: message.author.tag,
+        requester: message.member.displayName,
         url: args[0],
         announceChannel: message.channel.id
     });
@@ -39,7 +39,7 @@ exports.run = async (client, message, args, ops) => {
     if(!data.dispatcher) {
         play(client, ops, data);
     } else {
-        message.channel.send(`Added to queue: ${info.title} | Requested by ${message.author.id}`);
+        message.channel.send(`Added to queue: ${info.title} | Requested by ${data.queue[0].requester}`);
     }
 
     ops.active.set(message.guild.id, data);
