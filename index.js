@@ -5,6 +5,7 @@ const Discord = require('discord.js');
 const config = require('dotenv').config();
 const client = new Discord.Client();
 const token = process.env.DISCORD_BOT_SECRET;
+const ownerID = process.env.ownerID;
 const server = require('./server.js');
 // const moment = require('moment'); <-- see if this was used before
 
@@ -12,6 +13,7 @@ const server = require('./server.js');
 --------------------MUSIC PLAYBACK CONFIG--------------------
                                                            */
 // update this section when relevant
+const active = new Map();
 
 /*
 --------------------WEATHER CONFIG--------------------
@@ -51,6 +53,12 @@ client.on('message', message => {
     }
 
     try {
+        // options for certain commands
+        let ops = {
+            ownerID: ownerID,
+            active: active
+        }
+        
         let commandFile = require(`./commands/${cmd}.js`);
         commandFile.run(client, message, args);
     } catch(err) {
