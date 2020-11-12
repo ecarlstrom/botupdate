@@ -1,4 +1,5 @@
 exports.run = (client, message, args, ops) => {
+    // pass three checks to use: user in voice, bot in voice, both in same channel
     if(!message.member.voice.channel) {
         return message.channel.send(`Please join a voice channel to use this command.`);
     }
