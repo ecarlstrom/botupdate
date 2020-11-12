@@ -12,15 +12,13 @@ exports.run = async (client, message, args, ops) => {
         return message.channel.send(`Please use a proper search term or URL!`);
     }
 
-    let validate = await ytdl.validateURL(args[0]);
-    
+    let validate = ytdl.validateURL(args[0]);
     if(!validate) {
         let commandFile = require(`./search.js`);
         return commandFile.run(client, message, args, ops);
     }
 
     let info = await ytdl.getInfo(args[0]);
-
     let data = ops.active.get(message.guild.id) || {};
     if(!data.connection) {
         data.connection = await message.member.voice.channel.join();
