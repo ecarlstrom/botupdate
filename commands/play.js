@@ -18,7 +18,7 @@ exports.run = async (client, message, args, ops) => {
         return message.channel.send(`Sorry, please try a different URL!`);
     }
 
-    let info = ytdl.getVideoID(args[0]);
+    let info = ytdl.getInfo(args[0]);
     // console.log(args[0]);
     let connection = await message.member.voice.channel.join();
     let dispatcher = await connection.play(ytdl(args[0], { 
@@ -29,6 +29,6 @@ exports.run = async (client, message, args, ops) => {
          passes: 5,
          volume: 0.70
      }, {highWaterMark: 1});
-
+     
     message.channel.send(`Now playing: ${info.title}`);
 }
