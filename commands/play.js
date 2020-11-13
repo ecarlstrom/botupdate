@@ -13,7 +13,7 @@ exports.run = async (client, message, args, ops) => {
 
     let validate = ytdl.validateURL(args[0]);
     if(!validate) {
-        let commandFile = require(`./search.js`);
+        let commandFile = require(`./searchFirst.js`);
         return commandFile.run(client, message, args, ops);
     }
 
