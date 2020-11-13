@@ -18,7 +18,7 @@ exports.run = async (client, message, args, ops) => {
     }
 
     // set up some variables to handle data passed in
-    let thumbnail;
+    let id;
     let info;
     let title;
     let channel;
@@ -26,11 +26,11 @@ exports.run = async (client, message, args, ops) => {
     // actual object data here
     try {
         info = await ytdl.getInfo(args[0]);
-        console.log(info.videoDetails);
+        // console.log(info.videoDetails);
         title = info.videoDetails.title;
         channel = info.videoDetails.author;
         seconds = info.videoDetails.lengthSeconds;
-        thumbnail = info.videoDetails.videoId;
+        id = info.videoDetails.videoId;
     } catch(err) {
         console.log(err.stack || err);
     }
@@ -51,7 +51,7 @@ exports.run = async (client, message, args, ops) => {
         requester: message.member.displayName,
         requesterIcon: message.author.avatarURL(),
         url: args[0],
-        thumbnail: thumbnail,
+        id: id,
         announceChannel: message.channel.id
     });
     // console.log("Info: ", info)
@@ -63,7 +63,7 @@ exports.run = async (client, message, args, ops) => {
             .setTitle(`**__${title}__** added to queue!`)
             .setColor(0xc10404)
             .setFooter(`Requested by ${data.queue[0].requester}`, data.queue[0].requesterIcon)
-            .setImage(`https://i.ytimg.com/vi/${data.queue[0].thumbnail}/mqdefault.jpg`)
+            .setImage(`https://i.ytimg.com/vi/${id}/mqdefault.jpg`)
             .setTimestamp()
         message.channel.send({embed});
     }
