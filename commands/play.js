@@ -16,12 +16,18 @@ exports.run = async (client, message, args, ops) => {
         return commandFile.run(client, message, args, ops);
     }
 
+    // set up some variables to handle data passed in
     let info;
     let title;
+    let channel;
+    let seconds;
+    // actual object data here
     try {
         info = await ytdl.getInfo(args[0]);
-        console.log(info.videoDetails.title);
+        // console.log(info.videoDetails.title);
         title = info.videoDetails.title;
+        channel = info.videoDetails.author;
+        seconds = info.videoDetails.lengthSeconds;
     } catch(err) {
         console.log(err.stack || err);
     }
@@ -39,10 +45,11 @@ exports.run = async (client, message, args, ops) => {
     data.queue.push({
         songTitle: title,
         requester: message.member.displayName,
+        requesterIcon: message.author.avatarURL,
         url: args[0],
         announceChannel: message.channel.id
     });
-    console.log("Info: ", info)
+    // console.log("Info: ", info)
     if(!data.dispatcher) {
         play(client, ops, data);
     } else {
