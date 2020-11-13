@@ -1,3 +1,4 @@
+const Discord = require('discord.js');
 const { getInfo } = require('ytdl-core');
 const ytdl = require('ytdl-core');
 
@@ -17,6 +18,7 @@ exports.run = async (client, message, args, ops) => {
     }
 
     // set up some variables to handle data passed in
+    let thumbnail;
     let info;
     let title;
     let channel;
@@ -24,10 +26,11 @@ exports.run = async (client, message, args, ops) => {
     // actual object data here
     try {
         info = await ytdl.getInfo(args[0]);
-        // console.log(info.videoDetails.title);
+        console.log(info.videoDetails);
         title = info.videoDetails.title;
         channel = info.videoDetails.author;
         seconds = info.videoDetails.lengthSeconds;
+        thumbnail = info.videoDetails.videoId;
     } catch(err) {
         console.log(err.stack || err);
     }
@@ -43,17 +46,26 @@ exports.run = async (client, message, args, ops) => {
     data.guildID = message.guild.id;
 
     data.queue.push({
+        // id: id,
         songTitle: title,
         requester: message.member.displayName,
-        requesterIcon: message.author.avatarURL,
+        requesterIcon: message.member.avatarURL,
         url: args[0],
+        thumbnail: thumbnail,
         announceChannel: message.channel.id
     });
     // console.log("Info: ", info)
     if(!data.dispatcher) {
         play(client, ops, data);
     } else {
-        message.channel.send(`Added to queue: ${data.queue[0].songTitle} | Requested by ${data.queue[0].requester}`);
+        // message.channel.send(`Added to queue: ${data.queue[0].songTitle} | Requested by ${data.queue[0].requester}`);
+        const embed = new Discord.MessageEmbed()
+            .setTitle(`**${title}** added to queue!`)
+            .setColor(0xc10404)
+            .setFooter(`Requested by ${data.queue[0].requester}`, data.queue[0].requesterIcon)
+            .setImage(`https://i.ytimg.com/vi/${data.queue[0].thumbnail}/mqdefault.jpg`)
+            .setTimestamp()
+        message.channel.send({embed});
     }
 
     ops.active.set(message.guild.id, data);
