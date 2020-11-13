@@ -85,7 +85,14 @@ exports.run = async (client, message, args, ops) => {
 }
 
 async function play(client, ops, data) {
-    client.channels.cache.get(data.queue[0].announceChannel).send(`Now playing: ${data.queue[0].songTitle}`);
+    // client.channels.cache.get(data.queue[0].announceChannel).send(`Now playing: ${data.queue[0].songTitle}`);
+    const embed = new Discord.MessageEmbed()
+        .setTitle(`Now playing **${data.queue[0].songTitle}!**`)
+        .setColor(0xc10404)
+        .setFooter(`Requested by ${data.queue[0].requester}`, data.queue[0].requesterIcon)
+        .setImage(`https://i.ytimg.com/vi/${data.queue[0].id}/mqdefault.jpg`)
+        .setTimestamp()
+        client.channels.cache.get(data.queue[0].announceChannel).send({embed});
     data.dispatcher = await data.connection.play(ytdl(data.queue[0].url, { 
         filter: 'audioonly',
         quality: 'highestaudio',
