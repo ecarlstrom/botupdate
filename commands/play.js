@@ -1,7 +1,5 @@
 const { getInfo } = require('ytdl-core');
 const ytdl = require('ytdl-core');
-const ownerID = process.env.ownerID;
-const active = new Map();
 
 exports.run = async (client, message, args, ops) => {
     if(!message.member.voice.channel) {
@@ -19,10 +17,11 @@ exports.run = async (client, message, args, ops) => {
     }
 
     let info;
+    let title;
     try {
         info = await ytdl.getInfo(args[0]);
         console.log(info.videoDetails.title);
-        info = info.videoDetails.title;
+        title = info.videoDetails.title;
     } catch(err) {
         console.log(err.stack || err);
     }
@@ -38,7 +37,7 @@ exports.run = async (client, message, args, ops) => {
     data.guildID = message.guild.id;
 
     data.queue.push({
-        songTitle: info.title,
+        songTitle: title,
         requester: message.member.displayName,
         url: args[0],
         announceChannel: message.channel.id
@@ -47,7 +46,7 @@ exports.run = async (client, message, args, ops) => {
     if(!data.dispatcher) {
         play(client, ops, data);
     } else {
-        message.channel.send(`Added to queue: ${info} | Requested by ${data.queue[0].requester}`);
+        message.channel.send(`Added to queue: ${data.queue[0].songTitle} | Requested by ${data.queue[0].requester}`);
     }
 
     ops.active.set(message.guild.id, data);
