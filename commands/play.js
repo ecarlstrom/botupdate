@@ -49,7 +49,7 @@ exports.run = async (client, message, args, ops) => {
         // id: id,
         songTitle: title,
         requester: message.member.displayName,
-        requesterIcon: message.member.avatarURL,
+        requesterIcon: message.author.avatarURL(),
         url: args[0],
         thumbnail: thumbnail,
         announceChannel: message.channel.id
@@ -60,7 +60,7 @@ exports.run = async (client, message, args, ops) => {
     } else {
         // message.channel.send(`Added to queue: ${data.queue[0].songTitle} | Requested by ${data.queue[0].requester}`);
         const embed = new Discord.MessageEmbed()
-            .setTitle(`**${title}** added to queue!`)
+            .setTitle(`**__${title}__** added to queue!`)
             .setColor(0xc10404)
             .setFooter(`Requested by ${data.queue[0].requester}`, data.queue[0].requesterIcon)
             .setImage(`https://i.ytimg.com/vi/${data.queue[0].thumbnail}/mqdefault.jpg`)
