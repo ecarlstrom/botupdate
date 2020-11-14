@@ -12,6 +12,6 @@ exports.run = (client, message, args, ops) => {
         return message.channel.send(`Please enter a number between 0 and 100!`);
     }
 
-    let vol = fetched.dispatcher.setVolume(args[0]/100);
-    message.channel.send(`Volume set to ${vol}%!`);
+    fetched.dispatcher.setVolume(args[0]/100);
+    message.channel.send(`Volume set to ${args[0]}%!`);
 }
