@@ -33,6 +33,7 @@ client.login(token);
 client.on('ready', () => {
     console.log('Bot online!');
     console.log(`${client.user.username} ready for use.`);
+    client.user.setActivity(`⚠️EXTREMELY WIP VERSION⚠️`);
 });
 
 const prefix = process.env.prefix;
