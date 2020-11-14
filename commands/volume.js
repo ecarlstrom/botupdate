@@ -1,3 +1,5 @@
+const Discord = require("discord.js");
+
 exports.run = (client, message, args, ops) => {
     let fetched = ops.active.get(message.guild.id);
     if(!fetched) {
@@ -12,6 +14,10 @@ exports.run = (client, message, args, ops) => {
         return message.channel.send(`Please enter a number between 0 and 100!`);
     }
 
+    
     fetched.dispatcher.setVolume(args[0]/100);
-    message.channel.send(`Volume set to ${args[0]}%!`);
+    const embed = new Discord.MessageEmbed()
+        .setTitle(`Volume set to ${args[0]}%!`)
+        .setColor(0xfdfe03)
+    message.channel.send({embed});
 }
