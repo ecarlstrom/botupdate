@@ -13,7 +13,7 @@ exports.run = (client, message, args, ops) => {
     
     if(!args[0]) {
         const embed = new Discord.MessageEmbed()
-        .setTitle(`Current volume is ${fetched.dispatcher.volume}%.`)
+        .setTitle(`Current volume is ${fetched.dispatcher.volume * 100}%.`)
         .setColor(0xfdfe03)
         return message.channel.send({embed});
     }
