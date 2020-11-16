@@ -99,7 +99,7 @@ async function play(client, ops, data) {
         highWaterMark: 1<<25
      }),{
          passes: 5,
-        //  volume: this.volume || 0.70 ; fix this so volume is normalized -- no idea what property this has been changed to
+        volume: 0.70 //; pass message in to access me.guild, etc? fix this so volume is normalized -- no idea what property this has been changed to
      }, {highWaterMark: 1});
     data.dispatcher.guildID = data.guildID;
 
