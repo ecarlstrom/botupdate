@@ -9,6 +9,7 @@ exports.run = (client, message, args) => {
 
     let parsed = (1 + parseInt(args[0], 10));
 
+    // probably best to add a timeout feature to this
     message.channel.bulkDelete(parsed).then(messages => 
         message.channel.send(`🤠 Successfully removed \`${messages.size - 1}/${args[0]}\` messages! 🤠`).catch(error =>
             message.channel.send(``)));
