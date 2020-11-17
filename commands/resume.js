@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 exports.run = (client, message, args, ops) => {
     let fetched = ops.active.get(message.guild.id);
     if(!fetched) {
@@ -13,5 +15,8 @@ exports.run = (client, message, args, ops) => {
     }
 
     fetched.dispatcher.resume();
-    message.channel.send(`Resuming ${fetched.queue[0].songTitle}`);
+    const embed = new Discord.MessageEmbed()
+        .setTitle(`Resuming **${fetched.queue[0].songTitle}**!`)
+        .setColor(0xfdfe03)
+    return message.channel.send({embed});
 }
