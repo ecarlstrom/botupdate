@@ -1,4 +1,4 @@
-exports.run = (client, message, args, tools) => {
+exports.run = (client, message, args) => {
     if(isNaN(args[0])) {
         return message.channel.send(`Please specify the number of messages to delete.`);
     }
