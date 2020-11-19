@@ -220,3 +220,8 @@ client.on('message', message => {
         message.channel.send(`The !forecast command will be back soon once a better API is found.`)
     }
 })
+
+/*
+--------------------SERVER ECONOMY--------------------
+                                                    */
+const eco = require('quick.db');
