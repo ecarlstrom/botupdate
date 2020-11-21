@@ -22,15 +22,11 @@ Information on current commands and plans for improvement can be found further d
 
 - The `!join` command will make the bot join whichever channel the command issuer is currently in.
 
-- The `!boot/!kick` command will make the bot leave the current voice channel. As with `!join`, this can only be used by someone in the voice channel.
+- The `!leave` command will make the bot leave the current voice channel. As with `!join`, this can only be used by someone in the voice channel.
 
 - The `!delete <# of messages>` command deletes the specified number of previous messages from the current channel.
 
-- The `!fellas` command has the bot join voice and play a short Hank Hill audio clip before leaving.
-
 - The `!headpat` command will headpat the requester. Will add a way to use it on other people in the future.
-
-- The `!counterstrike/!cs` command will play a popular League of Legends sound clip that likely needs no introduction.
 
 ### Weather
 
