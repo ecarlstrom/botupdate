@@ -70,19 +70,17 @@ Will be added as they become available.
 
 ## Upcoming Plans and Improvements
 
-1. The number one planned feature for right now is to add the ability to use the `!search` command results to play something directly from the list. Looking at something like returning each search result with a number and then a simple entry of the number should play the given result.
+1. Looking to also add custom server prefix capabilities at some point to avoid any issues with other bots.
 
-2. Looking to also add custom server prefix capabilities at some point to avoid any issues with other bots.
+2. Expanding the capabilities of the `!ascii` command to format text a little better for larger entries and add image support.
 
-3. Expanding the capabilities of the `!ascii` command to format text a little better for larger entries and add image support.
+3. Addition of a `!repeat` command to allow a song to be re-queued as easily as possible.
 
-4. Addition of a `!repeat` command to allow a song to be re-queued as easily as possible.
+4. I'm looking at adding a `!loop` command that's similar to `!repeat`. The `!repeat` command will simply add the current song to the end of the queue again, whereas the `!loop` command will continually add the current song to the queue after a certain point. `!loop` will likely require higher privileges to prevent misuse and in most cases the function of `!repeat` will be more desirable anyway.
 
-5. I'm looking at adding a `!loop` command that's similar to `!repeat`. The `!repeat` command will simply add the current song to the end of the queue again, whereas the `!loop` command will continually add the current song to the queue after a certain point. `!loop` will likely require higher privileges to prevent misuse and in most cases the function of `!repeat` will be more desirable anyway.
+5. Add `!voteskip` as another option rather than regular skipping.
 
-6. Add `!voteskip` as another option rather than regular skipping.
-
-7. Provide a way for users (primarily other devs) to report potential security issues so they can be addressed.
+6. Provide a way for users (primarily other devs) to report potential security issues so they can be addressed.
 
 ## Feedback
 
