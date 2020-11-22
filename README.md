@@ -72,6 +72,8 @@ Will be added as they become available.
 
 6. Provide a way for users (primarily other devs) to report potential security issues so they can be addressed.
 
+7. Improving error notifications for the `!ascii` command.
+
 ## Feedback
 
 Please feel free to contact me at evan.carlstrom@gmail.com with any issues or feedback!
