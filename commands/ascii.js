@@ -1,12 +1,14 @@
 const ascii = require('ascii-art');
 
 exports.run = (client, message, args, ops) => {
+    if(!args.join(' ')) {
+        return message.reply(`🤠 Please enter some text to format! 🤠`)
+    }
+
+    console.log(args[0]);
     ascii.font(args.join(' '), 'Doom', function(err, rendered) {
         rendered = rendered.trimRight();
 
-        if(err) {
-            return message.channel.send(`Sorry, this cannot be formatted!`)
-        }
         
         if(rendered.length > 2000) {
             return message.channel.send('Sorry, limit is 2000 characters of output!');
