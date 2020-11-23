@@ -28,3 +28,10 @@ exports.run = (client, message, args, ops) => {
         .setColor(0xfdfe03)
     message.channel.send({embed});
 }
+
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: ['v', 'vol']
+    // permLevel
+};
