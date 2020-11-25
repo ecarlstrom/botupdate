@@ -29,7 +29,8 @@ const weather = require('weather-js');
 --------------------BOT INITIALIZATION--------------------
                                                         */
 client.login(token);
-
+// collections for aliases, queues, etc.?
+// add command loading/help references here
 client.on('ready', () => {
     console.log('Bot online!');
     console.log(`${client.user.username} ready for use.`);
