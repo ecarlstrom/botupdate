@@ -74,6 +74,8 @@ Will be added as they become available.
 
 7. Improving error notifications for the `!ascii` command.
 
+8. Make sure volume levels remain consistent throughout the queue.
+
 ## Feedback
 
 Please feel free to contact me at evan.carlstrom@gmail.com with any issues or feedback!
