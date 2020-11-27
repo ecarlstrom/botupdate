@@ -3,7 +3,7 @@ exports.run = (client, message) => {
     
     if(message.content.startsWith(process.env.prefix)) {
         message.reply("<:headpat:637295953925111818>");
-
+        message.react("<:YukiPat:781672363271258134>");
         // for reaction
         // const headpatEmoji = message.guild.emojis.find(emoji => emoji.name === "headpat")
         // return message.react(headpatEmoji);
