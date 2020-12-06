@@ -225,26 +225,26 @@ client.on('message', message => {
 /*
 --------------------SERVER ECONOMY--------------------
                                                     */
-// const db = require('quick.db');
+const db = require('quick.db');
 
-// client.on('message', message => {
-//   let msg = message.content.toUpperCase();
+client.on('message', message => {
+  let msg = message.content.toUpperCase();
 
-//   if(msg === `${prefix}BALANCE`) {
-//     db.get(message.author.id).then(i => {
-//       const embed = new Discord.MessageEmbed()
-//         .setDescription(`**${message.guild.name}'s Bank of Fellas**`)
-//         .setColor(0x85BB65)
-//         .addField(`Account holder:`, message.author.username, true)
-//         .addField(`Account Balance`, i.value, true)
-//     })
+  if(msg === `${prefix}BALANCE`) {
+    db.get(message.author.id).then(i => {
+      const embed = new Discord.MessageEmbed()
+        .setDescription(`**${message.guild.name}'s Bank of Fellas**`)
+        .setColor(0x85BB65)
+        .addField(`Account holder:`, message.author.username, true)
+        .addField(`Account Balance`, i.value, true)
+    })
 
-//     message.channel.send({embed});
-//   }
+    message.channel.send({embed});
+  }
 
-//   if(msg === `${prefix}PAYDAY`) {
-//     db.add(message.author.id, 500).then(i => {
-//       message.channel.send(`Received 500 fellas! You now have ${i.value}.`);
-//     })
-//   }
-// })
+  if(msg === `${prefix}PAYDAY`) {
+    db.add(message.author.id, 500).then(i => {
+      message.channel.send(`Received 500 fellas! You now have ${i.value}.`);
+    })
+  }
+})
