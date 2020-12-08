@@ -29,9 +29,9 @@ exports.run = (client, message, args, ops) => {
     message.channel.send({embed});
 }
 
-exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: ['v', 'vol']
-    // permLevel
-};
+// exports.conf = {
+//     enabled: true,
+//     guildOnly: false,
+//     aliases: ['v', 'vol']
+//     // permLevel
+// };
