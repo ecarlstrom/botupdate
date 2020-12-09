@@ -4,7 +4,7 @@ const ytdl = require('ytdl-core');
 
 exports.run = async (client, message, args, ops) => {
     if(!message.member.voice.channel) {
-        return message.channel.send(`Please join a voice channel!`);
+        return message.reply(`Please join a voice channel!`);
     }
 
     if(!args[0]) {
@@ -101,7 +101,7 @@ async function play(client, ops, data) {
         highWaterMark: 1<<25
      }),{
          passes: 5,
-        volume:  0.70  // data.guild.voice.connection.volume // still no idea where discord.js now hides this god-forsaken property, working on it
+        volume:  0.70  // data.connection.voice.connection.volume // still no idea where discord.js now hides this god-forsaken property, working on it
      }, {highWaterMark: 1});
     data.dispatcher.guildID = data.guildID;
 
