@@ -101,7 +101,7 @@ async function play(client, ops, data) {
         highWaterMark: 1<<25
      }),{
          passes: 5,
-        volume:  0.70  // data.connection.voice.connection.volume // still no idea where discord.js now hides this god-forsaken property, working on it
+        volume:  0.70  // data.connection.voiceConnection (connection may now be a property of voice).volume // still no idea where discord.js now hides this god-forsaken property, working on it
      }, {highWaterMark: 1});
     data.dispatcher.guildID = data.guildID;
 
