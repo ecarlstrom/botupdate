@@ -248,3 +248,6 @@ client.on('message', message => {
 //     })
 //   }
 // })
+
+// new eco commands: balance, payday, loan, transfer
+// quickdb should still work, set up new backend
