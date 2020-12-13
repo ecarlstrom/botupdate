@@ -1,3 +1,7 @@
+**December 13, 2020**
+
+- Small general package updates.
+
 **December 3, 2020**
 
 - Minor patch for security updates.
