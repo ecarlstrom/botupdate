@@ -76,6 +76,10 @@ Will be added as they become available.
 
 8. Make sure volume levels remain consistent throughout the queue.
 
+9. Add aliases for commands like the old bot had.
+
+10. Add a comprehensive `!help` command describing commands and aliases.
+
 ## Feedback
 
 Please feel free to contact me at evan.carlstrom@gmail.com with any issues or feedback!
