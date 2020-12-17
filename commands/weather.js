@@ -1,10 +1,13 @@
-client.on('message', message => {
+const Discord = require('discord.js');
+const weather = require('weather-js');
+
+exports.run = (client, message) => {
     let weatherMessageCaps = message.content.toUpperCase();
     let sender = message.author;
     let contents = message.content.slice(process.env.weatherPrefix.length).split(' ');
     let args = contents.slice(1);
   
-    if(message.content.startsWith(weatherPrefix)) {
+    if(message.content.startsWith(process.env.weatherPrefix)) {
   
       weather.find({search: args.join(' '), degreeType: 'F'}, function(err, result) {
         if(err) {
@@ -61,4 +64,4 @@ client.on('message', message => {
         }
       });
     }
-})
+}
