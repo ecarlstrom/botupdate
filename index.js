@@ -216,10 +216,6 @@ client.on('message', message => {
         }
       });
     }
-
-    if(message.content.startsWith(forecastPrefix)) {
-        message.channel.send(`The !forecast command will be back soon once a better API is found.`)
-    }
 })
 
 /*
