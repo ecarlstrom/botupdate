@@ -32,7 +32,7 @@ exports.run = (client, message) => {
           }     
   
           let formattedDay = moment(today).format('MM-DD-YYYY');    
-          const embed = new Discord.RichEmbed()
+          const embed = new Discord.MessageEmbed()
             .setTitle(`Forecast for week beginning ${formattedDay} for ${location.name}: `)
             .setColor(0xd3d3d3)
             .addField(`Monday: *__${forecastOutput[0].skytextday}__*`, `High ${forecastOutput[0].high}, low ${forecastOutput[0].low}`, true)
@@ -40,7 +40,7 @@ exports.run = (client, message) => {
             .addField(`Wednesday: *__${forecastOutput[2].skytextday}__*`, `High ${forecastOutput[2].high}, low ${forecastOutput[2].low}`, true)
             .addField(`Thursday: *__${forecastOutput[3].skytextday}__*`, `High ${forecastOutput[3].high}, low ${forecastOutput[3].low}`, true)
             .addField(`Friday: *__${forecastOutput[4].skytextday}__*`, `High ${forecastOutput[4].high}, low ${forecastOutput[4].low}`, true)
-            .addBlankField(true)
+            // blank space formatter?
             .setFooter(`Weekend data will be available when the API allows retrieval, sorry!`)
             .setTimestamp()
   
