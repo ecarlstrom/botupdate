@@ -80,6 +80,8 @@ Will be added as they become available.
 
 10. Add a comprehensive `!help` command describing commands and aliases.
 
+11. Find a better API to use with the `!forecast` command so that weeks begin from the current day rather than the Monday of the current week.
+
 ## Feedback
 
 Please feel free to contact me at evan.carlstrom@gmail.com with any issues or feedback!
