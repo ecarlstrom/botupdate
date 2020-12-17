@@ -1,3 +1,6 @@
+**December 17, 2020**
+
+- Added the basic `!forecast` command back to the bot -- still looking for a more comprehensive API but this at least allows some simple data return.
 **December 13, 2020**
 
 - Small general package updates.
