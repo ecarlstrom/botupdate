@@ -35,7 +35,7 @@ exports.run = (client, message) => {
             .addField(`Sky conditions: ${weatherOutput.skytext}`,
               `Wind at ${weatherOutput.winddisplay}.`)
               .addField('\u200b', '\u200b')
-            .setFooter('🤠 !forecast currently disabled while I work on getting access to weekend data. 🤠')
+            .setFooter('🤠 Want a forecast instead? Use the !forecast command. 🤠')
             .setThumbnail(`${weatherOutput.imageUrl}`)
             .setTimestamp()
             
