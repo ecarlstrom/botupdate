@@ -41,6 +41,8 @@ const prefix = process.env.prefix;
 const weatherPrefix = process.env.weatherPrefix;
 const forecastPrefix = process.env.forecastPrefix;
 // const musicPrefix = process.env.musicPrefix; <--- add when relevant
+// add help alias object here
+// help command next
 
 /*
 --------------------BASIC COMMAND HANDLER--------------------
