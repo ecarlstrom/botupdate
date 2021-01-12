@@ -185,17 +185,3 @@ process.on('unhandledRejection', (reason, promise) => {
 /*
 --------------------SERVER ECONOMY--------------------
                                                     */
-// quick random task for unrelated stuff, this will be deleted shortly
-let totalBoxes = 25;
-
-client.on('message', message => {
-
-    if(message.content.startsWith(prefix + 'boxadd')) {
-        totalBoxes += 5;
-        message.channel.send(`Five boxes added.`);
-    }
-
-    if(message.content.startsWith(prefix + 'boxcount')) {
-        message.channel.send(`Total of ${totalBoxes} boxes sent.`);
-    }
-});
