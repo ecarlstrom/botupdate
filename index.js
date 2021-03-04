@@ -86,7 +86,7 @@ client.on('message', message => {
 
 // message rules are stored in related blocks for clarity, rather than one large block encompassing all rules
 
-// kippy/tama rule below
+// kippy/tama/sam rule below
 client.on('message', message => {
     if(message.content.includes('kippy') || message.author.id === process.env.kippyID) {
         message.react('🐳');
@@ -95,6 +95,10 @@ client.on('message', message => {
 
     if(message.content.includes('tama') || message.author.id === process.env.tamaID) {
         message.react('👮');
+    }
+
+    if(message.author.id === process.env.samID) {
+        message.react('🥜');
     }
 });
 
